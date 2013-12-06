@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatterbox</title>
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- external javascript -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <!-- internal javascript -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/refactorBackbone.js"></script>
+  </head>
+  <body>
+
+    <div id="main">
+      <h1>Chat-Client</h1>
+      <label>Select Chatroom: </label><select></select>
+      <br />
+      <input type="text" class="input" placeholder="Write your message here!"></input>
+      <button class="send">Send</button>
+      <br>
+      <button class="refresh">Show new messages</button>
+      <div class="messageContainer">
+      </div>
+    </div>
+  </body>
+</html>
