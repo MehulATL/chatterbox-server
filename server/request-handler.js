@@ -17,41 +17,35 @@ var handleRequest = function(request, response) {
   var headers = defaultCorsHeaders;
   var statusCode = 200;
 
-  if ( request.method === "OPTIONS") {
-
-  }
-
-  response.writeHead(statusCode, headers);
-
-
   console.log("Serving request type " + request.method + " for url " + request.url);
 
-  /* Without this line, this server wouldn't work. See the note
-   * below about CORS. */
-
-
-   if (request.method === "GET") {
-    response.writeHead(statusCode, headers);
+  if (request.method === "GET") {
   }
 
-
-
-
-  headers['Content-Type'] = "text/plain";
-
-  /* .writeHead() tells our server what HTTP status code to send back */
-  // response.writeHead(statusCosssde, headers);
+  headers['Content-Type'] = "application/json";
+  //set this to json;
 
   if (request.method === "POST") {
+    statusCode = 201;
     request.on('data', function (message){
       results.push(message);
     });
-    console.log(request);
   }
+
+  if (request.url === "http://127.0.0.1:8080/arglebargle" ){
+    statusCode = 404;
+  }
+
+  if (request.url === "/arglebargle" ){
+    statusCode = 404;
+  }
+
   /* Make sure to always call response.end() - Node will not send
    * anything back to the client until you do. The string you pass to
    * response.end() will be the body of the response - i.e. what shows
    * up in the browser.*/
+
+  response.writeHead(statusCode, headers);
   response.end("[" + messageStorage + "]");
 };
 
@@ -59,7 +53,7 @@ var handleRequest = function(request, response) {
     "access-control-allow-origin": "*",
     "access-control-allow-methods": "HEAD, GET, POST, PUT, DELETE, OPTIONS",
     "access-control-allow-headers": "content-type, accept",
-    "access-control-max-age": 10 // Seconds.
+    "access-control-max-age": 300 // Seconds.
   };
 
   var results = [];
