@@ -4,6 +4,9 @@
  * You'll have to figure out a way to export this function from
  * this file and include it in basic-server.js so that it actually works.
  * *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html. */
+
+var http = require('http');
+var path = require('path');
 var handleRequest = function(request, response) {
   /* the 'request' argument comes from node's http module. It includes info about the
   request - such as what URL the browser is requesting. */
@@ -27,18 +30,9 @@ var handleRequest = function(request, response) {
    * below about CORS. */
 
 
-  // if (request.method.toUpperCase === "GET") {
-  //   response.writeBody(messageStorage);
-  // }
-  // // requestObject = {
-  //   'username': username,
-  //   'text': 'string',
-  //   'roomname': 'hackreactor'
-
-  // }
-
-
-
+   if (request.method === "GET") {
+    response.writeHead(statusCode, headers);
+  }
 
 
 
@@ -52,13 +46,13 @@ var handleRequest = function(request, response) {
     request.on('data', function (message){
       results.push(message);
     });
-    console.log(request.body);
+    console.log(request);
   }
   /* Make sure to always call response.end() - Node will not send
    * anything back to the client until you do. The string you pass to
    * response.end() will be the body of the response - i.e. what shows
    * up in the browser.*/
-  response.end(JSON.stringify(messageStorage));
+  response.end(messageStorage.toString());
 };
 
   var defaultCorsHeaders = {
@@ -69,7 +63,7 @@ var handleRequest = function(request, response) {
   };
 
   var results = [];
-  var messageStorage = [results];
+  var messageStorage = results;
 exports.handleRequest = handleRequest;
 /* These headers will allow Cross-Origin Resource Sharing (CORS).
  * This CRUCIAL code allows this server to talk to websites that

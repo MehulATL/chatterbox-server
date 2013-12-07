@@ -31,15 +31,16 @@ Messages.prototype.get = function(option){
     success: function(data){
       var roomFilter = [];
         // loop through our data to separate messages.
-        for (var i = 0; i < data.results.length; i++) {
-          message = data.results[i];
+        for (var i = 0; i < data.length; i++) {
+          console.log(data);
+          message = data[i];
           // putting a limit on message length
           // if(data.results[i].text.length > 100) {
           //   message.text = "I suck";
           //   console.log(data.results[i]);
           // }
           // making a list of all unique chatrooms
-          var rooms = data.results[i].roomname;
+          var rooms = data[i].roomname;
           if(roomFilter.indexOf(rooms) === -1){
             roomFilter.push(rooms);
           }
