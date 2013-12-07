@@ -29,18 +29,19 @@ Messages.prototype.get = function(option){
     type: 'GET',
     contentType: 'application/json',
     success: function(data){
+      var datap = JSON.parse(data);
       var roomFilter = [];
         // loop through our data to separate messages.
-        for (var i = 0; i < data.length; i++) {
-          console.log(data);
-          message = data[i];
+        for (var i = 0; i < datap.length; i++) {
+          console.log(datap);
+          message = datap[i];
           // putting a limit on message length
           // if(data.results[i].text.length > 100) {
           //   message.text = "I suck";
           //   console.log(data.results[i]);
           // }
           // making a list of all unique chatrooms
-          var rooms = data[i].roomname;
+          var rooms = datap[i].roomname;
           if(roomFilter.indexOf(rooms) === -1){
             roomFilter.push(rooms);
           }
