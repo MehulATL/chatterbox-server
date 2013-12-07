@@ -9,7 +9,7 @@ var Messages = function(){
 Messages.prototype.add = function (options){
   // debugger;
   $.ajax({
-    url: 'https://api.parse.com/1/classes/chatterbox',
+    url: 'http://127.0.0.1:8080',
     type: 'POST',
     data: JSON.stringify(options),
     contentType: 'application/json',
@@ -25,7 +25,7 @@ Messages.prototype.add = function (options){
 // AJAX ISH
 Messages.prototype.get = function(option){
   $.ajax({
-    url: 'https://api.parse.com/1/classes/chatterbox?order=-createdAt&limit=25',
+    url: 'http://127.0.0.1:8080',
     type: 'GET',
     contentType: 'application/json',
     success: function(data){
@@ -84,10 +84,10 @@ var NewMessageView = function(options){
   // send message function
   $('.send').on('click', function(){
     userMessage.text = $textbox.val();
-    debugger;
+    // debugger;
     Messages.prototype.add(userMessage);
     $textbox.val('');
-    $('.refresh').click();
+    // $('.refresh').click();
   });
 
   $textbox.keyup(function(e){
